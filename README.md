@@ -38,10 +38,6 @@
 
 ![AI 推理流程](docs/images/ai-inference-flow.png)
 
-**内部处理机制（分层示意）：**
-
-![AI 推理内部处理机制](docs/images/ai-inference-layers.png)
-
 **输出契约：** `title` · `category`（岗位名称-细分类型，≤15 字）· `risk_alerts`（无风险返回 `["无"]`，不得为空数组）· `insight`（50–150 字）· `company_brief`（≤100 字，必须基于检索结果）· `analysis_status`。强校验字段出错自动重试，最多 2 次。
 
 **Prompt 结构：** Role / Context / Task / Input / Constraints / Negative Constraints / Output Format，另配正向与边缘案例的 few-shot；规则层级 System Rules → System Prompt → Developer Prompt → User Prompt。

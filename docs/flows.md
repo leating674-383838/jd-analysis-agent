@@ -13,4 +13,7 @@
 ![系统流程图](images/system-flow.png)
 
 ## AI 推理流程图
-见 [README · 03 AI 设计](../README.md) 与 [AI 推理规格](ai-spec.md)。
+主图见 [README · 03 AI 设计](../README.md)，规格见 [AI 推理规格](ai-spec.md)。
+
+### 内部处理机制（分层示意）
+![AI 推理内部处理机制](images/ai-inference-layers.png)
