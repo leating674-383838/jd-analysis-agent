@@ -29,12 +29,18 @@
 
 **迭代规划：** V2 面试日历提醒、面试复盘可视化、我的收藏；V3 图片存储、录音转文字。
 
-产品流程（用户流程 / 系统流程 / AI 推理流程）见 [docs/PRD.md](docs/PRD.md)：
-
-![用户流程草稿](screenshots/workflow.jpg)
+产品流程：用户业务主流程与系统流程见 [docs/flows.md](docs/flows.md)；AI 推理流程见下方「03 AI 设计」。
 
 ## 03 AI 设计
 **推理管线（5 个逻辑节点）：** 校验输入字段并识别语言 → 非中文则翻译 → 大白话解读真实需求 → 岗位分类 + 虚假岗位判别 + 公司信息整合 → 按 JSON Schema 输出。
+
+**AI 推理流程：** 输入层接收岗位信息与描述文本（公司信息检索为选填）；处理层依次做字段完整性与语言检查、构造 Prompt（注入角色与负向约束）、调用模型，并对输出做 JSON Schema 校验——不合法则带约束重试（最多 2 次），仍失败则返回降级结果「解析失败，请稍后重试」。
+
+![AI 推理流程](docs/images/ai-inference-flow.png)
+
+**内部处理机制（分层示意）：**
+
+![AI 推理内部处理机制](docs/images/ai-inference-layers.png)
 
 **输出契约：** `title` · `category`（岗位名称-细分类型，≤15 字）· `risk_alerts`（无风险返回 `["无"]`，不得为空数组）· `insight`（50–150 字）· `company_brief`（≤100 字，必须基于检索结果）· `analysis_status`。强校验字段出错自动重试，最多 2 次。
 
@@ -84,7 +90,7 @@
 - 规划：招聘平台评价、简历匹配（V1 范围外）、V2 / V3 功能
 
 ## 文档
-[产品需求文档](docs/PRD.md) · [AI 推理规格](docs/ai-spec.md) · [系统架构](docs/architecture.md) · [Prompt 迭代](docs/prompt-iteration.md) · [运营与监控](docs/operations.md) · [代码节选](src/README.md)
+[产品需求文档](docs/PRD.md) · [产品流程图](docs/flows.md) · [AI 推理规格](docs/ai-spec.md) · [系统架构](docs/architecture.md) · [Prompt 迭代](docs/prompt-iteration.md) · [运营与监控](docs/operations.md) · [代码节选](src/README.md)
 
 ## 说明
 本仓库为项目展示，不含密钥、真实用户数据与完整 Prompt 原文。代码仅供展示，未经许可不得复制商用。
