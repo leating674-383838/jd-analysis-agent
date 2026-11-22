@@ -128,13 +128,13 @@ ORDER BY created_at DESC;
 
 | 项目 | 数值 |
 |------|------|
-| 模型 | moonshot-v1-8k (Kimi) |
+| 模型 | deepseek-flash (deepseek) |
 | 每次消耗 | 约 800 input + 300 output = 1100 tokens |
-| 单价 | 约 ¥0.012 / 1k tokens |
-| 每次成本 | 约 ¥0.013 |
-| 100次/天 | 约 ¥1.3/天 ≈ ¥40/月 |
+| 单价 | 约 ¥0.00002 / 1k tokens |
+| 每次成本 | 约 ¥0.000022 |
+| 100次/天 | 约 ¥0.0022/天 ≈ ¥0.066/月 |
 
-> 实际成本以 Kimi 控制台账单为准，每月核对一次。
+> 实际成本以 deepseek 控制台账单为准，每月核对一次。
 
 ---
 
@@ -152,7 +152,7 @@ ORDER BY created_at DESC;
 
 | 字段 | 值 |
 |------|----|
-| 模型 | moonshot-v1-8k (Kimi) |
+| 模型 | deepseek-flash (deepseek) |
 | 企业搜索 | Serper Google Search API |
 | 数据存储 | Supabase (PostgreSQL) |
 | Prompt 版本 | V2.1 |
